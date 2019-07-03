@@ -3,11 +3,11 @@
 class FormsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
+
   def index
     @forms = Form.all
     @checklists = Checklist.all
     @checklist = Checklist.new
-    # binding.pry
   end
 
   def new
@@ -21,8 +21,9 @@ class FormsController < ApplicationController
 
   def publish
     @form = Form.find(params[:id])
-    @form.status = 'Published'
+    @form.update(status: 'published', published_at: Time.now)
     @form.save
+    redirect_to root_path
   end
 
   def create

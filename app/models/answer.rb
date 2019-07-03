@@ -6,9 +6,9 @@ class Answer < ApplicationRecord
   belongs_to :question
 
   validates :value, presence: true
-  validates :comment, presence: true, length: { minimum: 12 }, unless: :values_is_none?
+  validates :comment, presence: true, length: { minimum: 12 }, unless: :value_is_none?
 
-  def values_is_none?
+  def value_is_none?
     value == "none"
   end
 

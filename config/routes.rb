@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'checklists/new'
   devise_for :users
   root 'forms#index'
+  get 'forms/publish'
   resources :forms
   resources :checklists
 end

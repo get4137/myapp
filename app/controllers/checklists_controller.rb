@@ -2,28 +2,23 @@
 
 class ChecklistsController < ApplicationController
   before_action :authenticate_user!
+
   def new
-    # binding.pry
     @form = Form.find(params[:checklist][:form_id])
     @checklist = Checklist.new
-
     questions = @form.questions
     questions.each do |question|
       @checklist.answers.build(question: question)
     end
-    # binding.pry
   end
 
   def edit
     @checklist = Checklist.find(params[:id])
-    # binding.pry
   end
 
   def create
-    # binding.pry
     @checklist = Checklist.new(checklist_params)
     @checklist.user = current_user
-    # binding.pry
     if @checklist.save
       redirect_to root_path
     else

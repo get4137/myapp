@@ -8,6 +8,4 @@ class Checklist < ApplicationRecord
 
   accepts_nested_attributes_for :answers, allow_destroy: true
 
-  resourcify
-
 end

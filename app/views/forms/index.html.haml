@@ -54,25 +54,23 @@
                 %th Published
                 %th Actions
             %tbody
-              - @forms.each do |f|
+              - @forms.each do |form|
                 %tr
                   %td
-                    = f.title
+                    = form.title
                   %td
-                    = f.body
+                    = form.body
                   %td
-                    = f.status
-                    = f.updated_at.strftime("%d.%m.%Y")
+                    = form.status
+                    -if form.status == 'draft'
+                      = form.updated_at.strftime("%d.%m.%Y")
                   %td
-                    - if f.published_at
-                      = f.published_at.strftime("%d.%m.%Y")
+                    - if form.published_at
+                      = form.published_at.strftime("%d.%m.%Y")
                   %td
-                    = link_to 'Edit', edit_form_path(f.id)
-                    = link_to 'Delete', form_path(f.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'}
-                    - if f.published_at == nil
-                      = form_for f do |f|
-                        = f.hidden_field :status, value: 'published'
-                        = f.hidden_field :published_at, value: DateTime.now
-                        = f.submit "Publish"
+                    = link_to 'Edit', edit_form_path(form.id)
+                    = link_to 'Delete', form_path(form.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'}
+                    - if form.status == 'draft'
+                      = link_to 'Publish', :action => 'publish', :id => form
   - else
     Sorry, you have no access

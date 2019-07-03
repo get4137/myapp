@@ -11,6 +11,6 @@ class Form < ApplicationRecord
 
   accepts_nested_attributes_for :questions, allow_destroy: true
 
-  resourcify
+  PUBLISHED_OPTIONS = { draft: 'Draft', published: 'Published' }.freeze
 
 end
