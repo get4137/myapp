@@ -9,8 +9,8 @@
             = f.text_field(:project_uid, {:class => 'form-control'})
             Select checklist to fill:
             = f.collection_select(:form_id, Form.all, :id, :title)
-            %a.modal-action.modal-close.waves-effect.waves-green.btn-flat= f.submit("Filling")
-            %a.modal-action.modal-close.waves-effect.waves-green.btn-flat{:href => "http://localhost:3000/"} Cancel
+            = f.submit("Filling")
+            = link_to 'Cancel', root_path
   .row
     .col.s12
       .card.material-table
@@ -64,14 +64,15 @@
                     = f.status
                     = f.updated_at.strftime("%d.%m.%Y")
                   %td
-                    - if f.published_at != nil
+                    - if f.published_at
                       = f.published_at.strftime("%d.%m.%Y")
                   %td
                     = link_to 'Edit', edit_form_path(f.id)
                     = link_to 'Delete', form_path(f.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'}
-                    = form_for f do |f|
-                      = f.hidden_field :status, value: 'published'
-                      = f.hidden_field :published_at, value: DateTime.now
-                      = f.submit "Publish"
+                    - if f.published_at == nil
+                      = form_for f do |f|
+                        = f.hidden_field :status, value: 'published'
+                        = f.hidden_field :published_at, value: DateTime.now
+                        = f.submit "Publish"
   - else
     Sorry, you have no access

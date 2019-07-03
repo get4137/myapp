@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ChecklistsController < ApplicationController
-  load_and_authorize_resource
+  before_action :authenticate_user!
   def new
     # binding.pry
     @form = Form.find(params[:checklist][:form_id])
