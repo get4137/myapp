@@ -1,12 +1,13 @@
 .nested-fields
   .field
-    = f.object.question.title
+    %div{style: "font-size:2vw;text-align;"}
+      = f.object.question.title
   .field
     = f.object.question.body
   .field
     = f.hidden_field :question_id, value: f.object.question.id
   .field
-    = f.label :value
+    = f.label :value, 'Choose the question corresponding status'
     = f.select :value, :collection => Question::ANSWER_OPTIONS.map {|k,v| [v,k]}
   .field
     = f.label :comment

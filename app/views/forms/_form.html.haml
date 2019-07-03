@@ -2,6 +2,7 @@
   - if @form.errors.any?
     - @form.errors.full_messages.each do |msg|
       .alert.red-text= msg
+  %h5 Checklist title and title descriptions
   .field
     = f.label :title, 'Checklist title'
     = f.text_field(:title, {:class => 'form-control'})
@@ -11,6 +12,7 @@
   .field
     - f.label :published_at
     - f.datetime_select :published_at
+  %h5 Questions and questions descriptions
   #questions
     = f.fields_for :questions do |question|
       = render 'question_fields', :f => question
