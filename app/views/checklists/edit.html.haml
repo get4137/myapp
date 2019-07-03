@@ -1,0 +1,14 @@
+= form_for @checklist do |f|
+  - if @checklist.errors.any?
+    - @checklist.errors.full_messages.each do |msg|
+      .alert.red-text= msg
+  .field
+    = f.hidden_field :project_uid
+    = f.hidden_field :form_id
+  %h5 Answers
+  #answers
+    = f.fields_for :answers do |answer|
+      = render 'answer_fields', :f => answer
+  = f.submit 'Save'
+
+= link_to 'Back', root_path, data: {confirm: 'Unsaved changes will be clearing on going back'}

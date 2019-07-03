@@ -1,0 +1,77 @@
+#test1.col.s12
+  %a.btn.grey.modal-trigger.z-depth-2{:href => "#modal1"} Fill checklist
+  #modal1.modal
+    .modal-content
+      .input-field.col.s12
+        %div
+          = form_for @checklist, url: new_checklist_path, method: 'get' do |f|
+            = f.label :project_uid, 'Project_ID:'
+            = f.text_field(:project_uid, {:class => 'form-control'})
+            Select checklist to fill:
+            = f.collection_select(:form_id, Form.all, :id, :title)
+            %a.modal-action.modal-close.waves-effect.waves-green.btn-flat= f.submit("Filling")
+            %a.modal-action.modal-close.waves-effect.waves-green.btn-flat{:href => "http://localhost:3000/"} Cancel
+  .row
+    .col.s12
+      .card.material-table
+        %table#datatable
+          %thead
+            %tr
+              %th Project
+              %th Checklist
+              %th Updated
+              %th Questions
+              %th
+              %th Actions
+          %tbody
+            - @checklists.each do |f|
+              %tr
+                %td= f.project_uid
+                %td= f.form.title
+                %td= f.updated_at.strftime("%d/%m/%Y")
+                %td
+                  - f.form.questions.each do |question|
+                    %p= question.title
+                %td
+                  - f.answers.each do |answer|
+                    %p= answer.value
+                %td
+                  = link_to 'Edit', edit_checklist_path(f.id)
+                  = link_to 'Delete', checklist_path(f.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'}
+
+#test2.col.s12
+  - if has_role?(:admin)
+    %a.btn.grey.z-depth-2{href: "/forms/new"} Add checklist
+    .row
+      .col.s12
+        .card.material-table
+          %table#datatable
+            %thead
+              %tr
+                %th Name
+                %th Description
+                %th Status
+                %th Published
+                %th Actions
+            %tbody
+              - @forms.each do |f|
+                %tr
+                  %td
+                    = f.title
+                  %td
+                    = f.body
+                  %td
+                    = f.status
+                    = f.updated_at.strftime("%d.%m.%Y")
+                  %td
+                    - if f.published_at != nil
+                      = f.published_at.strftime("%d.%m.%Y")
+                  %td
+                    = link_to 'Edit', edit_form_path(f.id)
+                    = link_to 'Delete', form_path(f.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'}
+                    = form_for f do |f|
+                      = f.hidden_field :status, value: 'published'
+                      = f.hidden_field :published_at, value: DateTime.now
+                      = f.submit "Publish"
+  - else
+    Sorry, you have no access

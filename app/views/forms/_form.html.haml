@@ -1,0 +1,19 @@
+= form_for @form do |f|
+  - if @form.errors.any?
+    - @form.errors.full_messages.each do |msg|
+      .alert.red-text= msg
+  .field
+    = f.label :title, 'Checklist title'
+    = f.text_field(:title, {:class => 'form-control'})
+  .field
+    = f.label :body, 'Checklist detailed description'
+    = f.text_field(:body, {:class => 'form-control'})
+  .field
+    - f.label :published_at
+    - f.datetime_select :published_at
+  #questions
+    = f.fields_for :questions do |question|
+      = render 'question_fields', :f => question
+    .links
+      = link_to_add_association 'add', f, :questions
+  = f.submit 'Save'

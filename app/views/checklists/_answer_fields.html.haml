@@ -1,0 +1,14 @@
+.nested-fields
+  .field
+    = f.object.question.title
+  .field
+    = f.object.question.body
+  .field
+    = f.hidden_field :question_id, value: f.object.question.id
+  .field
+    = f.label :value
+    = f.select :value, :collection => Question::ANSWER_OPTIONS.map {|k,v| [v,k]}
+  .field
+    = f.label :comment
+    = f.text_field(:comment, {:class => 'form-control'})
+  = link_to_remove_association "remove answer", f
