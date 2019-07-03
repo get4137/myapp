@@ -20,13 +20,13 @@
   <div class="nav-extended cyan">
     <div class="container">
       <div class="nav-wrapper">
-        <a href="http://localhost:3000/" class="brand-logo">Checklist</a>
+          <a class="brand-logo"><%= link_to 'Checklists', root_path %></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="http://localhost:3000/users/profile">Profile</a></li>
+          <li><%= link_to 'Profile', users_profile_path %></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li><a href="http://localhost:3000/users/profile">Profile</a></li>
+          <li><%= link_to 'Profile', users_profile_path %></li>
         </ul>
       </div>
       <div class="nav-content">
