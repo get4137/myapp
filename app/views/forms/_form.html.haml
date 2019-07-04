@@ -18,6 +18,6 @@
       = render 'question_fields', :f => question
     .links
       = link_to_add_association 'add', f, :questions
-  %button.btn.grey.z-depth-2{name: "action", type: "submit"}
+  %button.btn.grey.z-depth-2.btn_save{name: "action", type: "submit"}
     Save
     %i.material-icons.right send
