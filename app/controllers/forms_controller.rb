@@ -30,7 +30,7 @@ class FormsController < ApplicationController
   def create
     @form = Form.new(form_params)
     if @form.save
-      redirect_to root_path
+      redirect_to forms_path
     else
       render 'new'
     end
@@ -39,7 +39,7 @@ class FormsController < ApplicationController
   def update
     @form = Form.find(params[:id])
     if @form.update(form_params)
-      redirect_to root_path
+      redirect_to forms_path
     else
       render 'edit'
     end
@@ -48,7 +48,7 @@ class FormsController < ApplicationController
   def destroy
     @form = Form.find(params[:id])
     @form.destroy
-    redirect_to root_path
+    redirect_to forms_path
   end
 
   private

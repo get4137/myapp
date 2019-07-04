@@ -8,5 +8,8 @@
   #answers
     = f.fields_for :answers do |answer|
       = render 'answer_fields', :f => answer
-  = f.submit 'Save'
-= link_to 'Back', root_path, data: {confirm: 'Unsaved changes will be clearing on going back'}
+  %button.btn.grey.z-depth-2{name: "action", type: "submit"}
+    Save
+    %i.material-icons.right send
+= link_to :back, class: "btn", data: {confirm: 'Unsaved changes will be clearing on going back'} do
+  %i.material-icons keyboard_backspace

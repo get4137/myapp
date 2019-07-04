@@ -1,3 +1,4 @@
 = render 'form', form: @form
 
-= link_to 'Back', forms_path, data: {confirm: 'Unsaved changes will be clearing on going back'}
+= link_to :back, class: "btn", data: {confirm: 'Unsaved changes will be clearing on going back'} do
+  %i.material-icons keyboard_backspace

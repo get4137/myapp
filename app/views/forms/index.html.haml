@@ -23,12 +23,19 @@
                   -if form.status == 'draft'
                     = form.updated_at.strftime("%d.%m.%Y")
                 %td
-                  - if form.published_at
+                  -if form.published_at
                     = form.published_at.strftime("%d.%m.%Y")
                 %td
-                  = link_to 'Edit', edit_form_path(form.id)
-                  = link_to 'Delete', form_path(form.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'}
-                  - if form.status == 'draft'
-                    = link_to 'Publish', :action => 'publish', :id => form
-- else
-  Sorry, you have no access
+                  = link_to edit_form_path(form.id), class: "i" do
+                    %i.material-icons create
+                  %a.dropdown-button{"data-activates" => "dropdown1", href: "#"}
+                    %i.material-icons more_vert
+                  %ul#dropdown1.dropdown-content
+                    %li
+                      = link_to form_path(form.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'} do
+                        Delete
+                        %i.material-icons delete
+                    %li
+                      = link_to :action => 'publish', :id => form do
+                        Publish
+                        %i.material-icons.right remove_red_eye

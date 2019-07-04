@@ -1,6 +1,6 @@
 #test1.col.s12
   %a.btn.grey.modal-trigger.z-depth-2{:href => "#modal1"} Fill checklist
-  #modal1.modal
+  #modal1.modal.modal-fixed-footer
     .modal-content
       .input-field.col.s12
         %div
@@ -21,7 +21,6 @@
               %th Checklist
               %th Updated
               %th Questions
-              %th Corresponding status
               %th Actions
           %tbody
             - @checklists.each do |f|
@@ -30,11 +29,15 @@
                 %td= f.form.title
                 %td= f.updated_at.strftime("%d/%m/%Y")
                 %td
-                  - f.form.questions.each do |question|
-                    %p= question.title
-                %td
                   - f.answers.each do |answer|
                     %p= answer.value
                 %td
-                  = link_to 'Edit', edit_checklist_path(f.id)
-                  = link_to 'Delete', checklist_path(f.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'}
+                  = link_to edit_checklist_path(f.id), class: "i" do
+                    %i.material-icons create
+                  %a.dropdown-button.grey.lighten-5.black-text{"data-activates" => "dropdown1", href: "#"}
+                    %i.material-icons more_vert
+                  %ul#dropdown1.dropdown-content
+                    %li
+                      = link_to checklist_path(f.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'} do
+                        Delete
+                        %i.material-icons delete

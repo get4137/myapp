@@ -26,7 +26,7 @@ class ChecklistsController < ApplicationController
     @checklist = Checklist.new(checklist_params)
     @checklist.user = current_user
     if @checklist.save
-      redirect_to root_path
+      redirect_to checklists_path
     else
       render 'new'
     end
@@ -36,7 +36,7 @@ class ChecklistsController < ApplicationController
     @checklist = Checklist.find(params[:id])
     if @checklist.update(checklist_params)
       # binding.pry
-      redirect_to root_path
+      redirect_to checklists_path
     else
       render 'edit'
     end
@@ -45,7 +45,7 @@ class ChecklistsController < ApplicationController
   def destroy
     @checklist = Checklist.find(params[:id])
     @checklist.destroy
-    redirect_to root_path
+    redirect_to checklists_path
   end
 
   private
