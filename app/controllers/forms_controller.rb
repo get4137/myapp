@@ -24,7 +24,7 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     @form.update(status: 'published', published_at: Time.now)
     @form.save
-    redirect_to root_path
+    redirect_to forms_path
   end
 
   def create

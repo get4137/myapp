@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
   get 'checklists/new'
-  devise_for :users
-  root 'users#profile'
   get 'forms/publish'
+  get 'users/profile'
+  devise_for :users
+  root 'checklists#index'
   resources :forms
   resources :checklists
 end
