@@ -3,6 +3,12 @@
 class ChecklistsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @forms = Form.all
+    @checklists = Checklist.all
+    @checklist = Checklist.new
+  end
+
   def new
     @form = Form.find(params[:checklist][:form_id])
     @checklist = Checklist.new

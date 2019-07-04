@@ -1,0 +1,40 @@
+#test1.col.s12
+  %a.btn.grey.modal-trigger.z-depth-2{:href => "#modal1"} Fill checklist
+  #modal1.modal
+    .modal-content
+      .input-field.col.s12
+        %div
+          = form_for @checklist, url: new_checklist_path, method: 'get' do |f|
+            = f.label :project_uid, 'Project_ID:'
+            = f.text_field(:project_uid, {:class => 'form-control'})
+            Select checklist to fill:
+            = f.collection_select(:form_id, Form.all, :id, :title)
+            = f.submit("Filling")
+            = link_to 'Cancel', root_path
+  .row
+    .col.s12
+      .card.material-table
+        %table#datatable
+          %thead
+            %tr
+              %th Project
+              %th Checklist
+              %th Updated
+              %th Questions
+              %th Corresponding status
+              %th Actions
+          %tbody
+            - @checklists.each do |f|
+              %tr
+                %td= f.project_uid
+                %td= f.form.title
+                %td= f.updated_at.strftime("%d/%m/%Y")
+                %td
+                  - f.form.questions.each do |question|
+                    %p= question.title
+                %td
+                  - f.answers.each do |answer|
+                    %p= answer.value
+                %td
+                  = link_to 'Edit', edit_checklist_path(f.id)
+                  = link_to 'Delete', checklist_path(f.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'}

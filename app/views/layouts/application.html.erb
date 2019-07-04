@@ -17,38 +17,23 @@
 
 <body>
 
-<nav>
-  <div class="nav-extended cyan">
-    <div class="container">
-      <div class="nav-wrapper">
-          <a class="brand-logo"><%= link_to 'Checklists', root_path %></a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><%= link_to 'Profile', users_profile_path %></li>
-        </ul>
-        <ul class="side-nav" id="mobile-demo">
-          <li><%= link_to 'Profile', users_profile_path %></li>
-        </ul>
-      </div>
-      <div class="nav-content">
-        <ul class="tabs tabs-transparent">
-          <li class="tab"><a href="#test1">Fill checklists</a></li>
-          <li class="tab"><a href="#test2">Configure checklists</a></li>
-        </ul>
-      </div>
-    </div>
+<nav style="min-height: 140px">
+  <div class="nav-wrapper cyan">
+    <a href="#" class="brand-logo logo_checklist">Checklist</a>
+    <ul id="nav" class="right">
+      <li><%= link_to 'Profile', root_path %></li>
+    </ul>
+    <ul id="nav" class="left nav_links">
+      <li class="tab"><%= link_to 'Fill checklists', checklists_path %></li>
+      <li class="tab"><%= link_to 'Configure checklists', forms_path %></li>
+    </ul>
   </div>
 </nav>
-</br>
-</br>
-</br>
-
 <div class="container">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-<%= yield %>
+  <%= yield %>
 </div>
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <script>
@@ -66,7 +51,6 @@
         $('.modal').modal();
     });
 </script>
-
 </body>
 
 </html>
