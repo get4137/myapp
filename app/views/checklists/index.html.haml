@@ -30,7 +30,22 @@
                 %td= checklist.updated_at.strftime("%d/%m/%Y")
                 %td
                   - checklist.answers.each do |answer|
-                    = Question::ANSWER_OPTIONS[answer.value]
+                    - if answer.value == 'none'
+                      %span.grey= answer.question.title
+                      %span.grey= Question::ANSWER_OPTIONS[answer.value]
+                      %br
+                    - elsif answer.value == 'yes'
+                      %span.green= answer.question.title
+                      %span.green= Question::ANSWER_OPTIONS[answer.value]
+                      %br
+                    - elsif answer.value == 'no'
+                      %span.red= answer.question.title
+                      %span.red= Question::ANSWER_OPTIONS[answer.value]
+                      %br
+                    - elsif answer.value == 'na'
+                      %span.purple= answer.question.title
+                      %span.purple= Question::ANSWER_OPTIONS[answer.value]
+                      %br
                 %td
                   = link_to edit_checklist_path(checklist.id), class: "i" do
                     %i.material-icons create
