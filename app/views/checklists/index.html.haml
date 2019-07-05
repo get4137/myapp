@@ -23,21 +23,21 @@
               %th Questions
               %th Actions
           %tbody
-            - @checklists.each do |f|
+            - @checklists.each do |checklist|
               %tr
-                %td= f.project_uid
-                %td= f.form.title
-                %td= f.updated_at.strftime("%d/%m/%Y")
+                %td= checklist.project_uid
+                %td= checklist.form.title
+                %td= checklist.updated_at.strftime("%d/%m/%Y")
                 %td
-                  - f.answers.each do |answer|
-                    %p= answer.value
+                  - checklist.answers.each do |answer|
+                    = Question::ANSWER_OPTIONS[answer.value]
                 %td
-                  = link_to edit_checklist_path(f.id), class: "i" do
+                  = link_to edit_checklist_path(checklist.id), class: "i" do
                     %i.material-icons create
                   %a.dropdown-button.grey.lighten-5.black-text{"data-activates" => "dropdown1", href: "#"}
                     %i.material-icons more_vert
                   %ul#dropdown1.dropdown-content
                     %li
-                      = link_to checklist_path(f.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'} do
+                      = link_to checklist_path(checklist.id), method: :delete, data: {confirm: 'do you want to delete the checklist?'} do
                         Delete
                         %i.material-icons delete

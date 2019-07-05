@@ -21,11 +21,11 @@
   <div class="nav-wrapper cyan">
     <a href="#" class="brand-logo logo_checklist">Checklist</a>
     <ul id="nav" class="right">
-      <li><%= link_to 'Profile', root_path %></li>
+      <li class="<%= controller_name == ('users') ? 'active' : '' %>"><%= link_to 'Profile', users_profile_path %></li>
     </ul>
-    <ul id="nav" class="left nav_links">
-      <li class="tab"><%= link_to 'Fill checklists', checklists_path %></li>
-      <li class="tab"><%= link_to 'Configure checklists', forms_path %></li>
+    <ul id="nav" class="left nav_links active">
+      <li class="<%= controller_name == ('checklists') ? 'active' : '' %>"><%= link_to 'Fill checklists', checklists_path %></li>
+      <li class="<%= controller_name == ('forms') ? 'active' : '' %>"><%= link_to 'Configure', forms_path %></li>
     </ul>
   </div>
 </nav>

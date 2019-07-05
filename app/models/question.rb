@@ -8,6 +8,7 @@ class Question < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  ANSWER_OPTIONS = { none: 'None', na: 'N/A', yes: 'Yes', no: 'No' }.freeze
+  # ANSWER_OPTIONS = { none: 'None', na: 'N/A', yes: 'Yes', no: 'No' }.freeze
+  ANSWER_OPTIONS = { 'none' => 'None', 'yes' => 'Yes', 'no' => 'No', 'na' => 'N/A' }.freeze
 
 end
