@@ -19,7 +19,7 @@
 
 <nav style="min-height: 140px">
   <div class="nav-wrapper cyan">
-    <a href="#" class="brand-logo logo_checklist">Checklist</a>
+    <li class="brand-logo logo_checklist"><%= link_to 'Checklists', checklists_path %></li>
     <ul id="nav" class="right">
       <li class="<%= controller_name == ('users') ? 'active' : '' %>"><%= link_to 'Profile', users_profile_path %></li>
     </ul>

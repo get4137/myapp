@@ -37,11 +37,17 @@
 .btn_back {
   position: fixed;
   top: 17%;
-  left: 10%;
+  left: 5%;
 }
 
 .btn_save {
   position: fixed;
   top: 17%;
-  right: 10%;
+  right: 5%;
 }
+
+.col.s12.m6.question_and_answer
+{
+  border:1px solid grey;
+}
+
