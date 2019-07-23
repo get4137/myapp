@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Form < ApplicationRecord
-
   has_many :questions, inverse_of: :form, dependent: :destroy
   has_many :checklists, dependent: :destroy
 
@@ -12,5 +11,4 @@ class Form < ApplicationRecord
   accepts_nested_attributes_for :questions, allow_destroy: true
 
   PUBLISHED_OPTIONS = { draft: 'Draft', published: 'Published' }.freeze
-
 end

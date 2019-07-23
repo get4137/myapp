@@ -1,5 +1,6 @@
-class Checklist < ApplicationRecord
+# frozen_string_literal: true
 
+class Checklist < ApplicationRecord
   has_many :answers, inverse_of: :checklist, dependent: :destroy
   belongs_to :user
   belongs_to :form
@@ -7,5 +8,4 @@ class Checklist < ApplicationRecord
   validates :project_uid, presence: true
 
   accepts_nested_attributes_for :answers, allow_destroy: true
-
 end

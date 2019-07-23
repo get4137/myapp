@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 class FormsController < ApplicationController
@@ -54,6 +53,6 @@ class FormsController < ApplicationController
   private
 
   def form_params
-    params.require(:form).permit(:title, :body, :status, :published_at, questions_attributes: [:id, :title, :body, :_destroy])
+    params.require(:form).permit(:title, :body, :status, :published_at, questions_attributes: %i[id title body _destroy])
   end
 end

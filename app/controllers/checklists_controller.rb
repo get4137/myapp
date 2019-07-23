@@ -53,5 +53,4 @@ class ChecklistsController < ApplicationController
   def checklist_params
     params.require(:checklist).permit(:project_uid, :form_id, answers_attributes: %i[id question_id value comment _destroy])
   end
-
 end

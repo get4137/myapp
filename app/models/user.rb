@@ -1,5 +1,6 @@
-class User < ApplicationRecord
+# frozen_string_literal: true
 
+class User < ApplicationRecord
   rolify
 
   devise :database_authenticatable, :registerable,
@@ -8,6 +9,5 @@ class User < ApplicationRecord
   has_many :checklists, dependent: :destroy
 
   validates :email, presence: true
-  validates :password, presence: true, length: {minimum: 6}
-
+  validates :password, presence: true, length: { minimum: 6 }
 end

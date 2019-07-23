@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Question < ApplicationRecord
-
   has_many :answers, dependent: :destroy
   belongs_to :form
 
@@ -10,5 +9,4 @@ class Question < ApplicationRecord
 
   # ANSWER_OPTIONS = { none: 'None', na: 'N/A', yes: 'Yes', no: 'No' }.freeze
   ANSWER_OPTIONS = { 'none' => 'None', 'yes' => 'Yes', 'no' => 'No', 'na' => 'N/A' }.freeze
-
 end

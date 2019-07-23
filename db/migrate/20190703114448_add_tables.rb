@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class AddTables < ActiveRecord::Migration[5.2]
-
   def change
     create_table :forms do |t|
       t.string :title
@@ -29,5 +28,4 @@ class AddTables < ActiveRecord::Migration[5.2]
       t.timestamps
     end
   end
-
 end
